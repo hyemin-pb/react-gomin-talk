@@ -1,0 +1,798 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+$mainColor: #cb8df0;
+$dateColor: #777;
+
+// 배구팀 컬러
+$pinkspiders: #d8309c;
+$gskixx: #00718f;
+$aipeppers: #de1709;
+$hillstate: #4db847;
+$kgc: #f5754b;
+$hipass: #102a86;
+$ibkaltos: #004b9b;
+$aipeppers: #de1709;
+
+%Flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin teamColor($color) {
+  background-color: $color;
+  border-color: $color;
+  color: #fff;
+}
+@mixin winnerCircle {
+  content: "W";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f00;
+  color: #fff;
+  font-size: 0.8em;
+  text-align: center;
+  line-height: 20px;
+  // font-weight: bold;
+}
+
+.common-icon {
+  cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+div.container {
+  height: calc(100vh - 44px - 70px);
+  margin-top: 44px;
+  margin-bottom: 70px;
+  padding: 10px 20px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: #ccc;
+  }
+}
+
+// Oversize.js
+.oversize {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: #1e243a;
+  h4 {
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// UserList.js
+.user-sub-title {
+  padding-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+// UserItem.js
+.user-contents {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  .user-img {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+  .user-content {
+    margin-left: 20px;
+    h4 {
+      font-size: 14px;
+    }
+    p {
+      font-size: 12px;
+      color: #555;
+    }
+  }
+}
+
+// Header.js
+// statusBar.js
+header {
+  @extend %Flex;
+  align-items: center;
+  width: 100vw;
+  height: 44px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .clock {
+    color: #555;
+  }
+  .status-bar-wrapper {
+    display: flex;
+    .status-bar-icon {
+      margin-left: 7px;
+      color: #555;
+    }
+    .status-bar_readonly {
+      background-color: tomato;
+      padding: 1px 8px;
+      margin-right: 6px;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.8em;
+    }
+  }
+}
+
+// nav.js
+#nav {
+  @extend %Flex;
+  align-items: center;
+  width: 100vw;
+  background: #fcfcfc;
+  padding: 20px 50px;
+
+  font-size: 20px;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+
+  .nav-item {
+    color: #333;
+    &.active {
+      color: $mainColor;
+    }
+  }
+}
+// TitleHeader.js
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  color: #333;
+  font-size: 21px;
+  .title {
+    display: flex;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .icon-wrapper span {
+    margin-left: 20px;
+    cursor: pointer;
+  }
+}
+// ProfileDeatil.js
+.profile-detail {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  .btn-back {
+    font-size: 1.6em;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 9;
+  }
+  .bg-img {
+    width: 100%;
+    height: 100%;
+    background-color: #fff !important;
+    background-size: cover !important;
+    position: absolute;
+    top: 0px;
+    left: 0;
+  }
+  .bg-opacity {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0px;
+    left: 0;
+  }
+  .user-wrap {
+    width: 220px;
+    position: absolute;
+    top: 60%;
+    margin-left: 50%;
+    transform: translateX(-100px);
+    .user-img {
+      display: flex;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      object-fit: cover;
+      z-index: 9;
+    }
+    .user-content {
+      color: #fff;
+      text-align: center;
+      z-index: 9;
+      h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+// routes/Chat.js
+// Chatting.js
+#chatting {
+  min-height: calc(100vh - 120px);
+  background-image: linear-gradient(
+    to top,
+    #d5d4d0 0%,
+    #d5d4d0 1%,
+    #eeeeec 31%,
+    #efeeec 75%,
+    #e9e9e7 100%
+  );
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    background-color: transparent;
+  }
+  .header {
+    @extend %Flex;
+
+    padding: 5px 0;
+    margin-bottom: 15px;
+    color: #333;
+    h4 {
+      font-size: 18px;
+    }
+    .btn-back {
+      font-size: 1.3em;
+    }
+  }
+  .date {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0;
+    font-size: 12px;
+    color: #555;
+  }
+}
+// ArtistMsg.js
+.artist-msg-item {
+  display: flex;
+  margin-bottom: 20px;
+  .profile-Img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .msg-wrapper {
+    margin-left: 10px;
+    position: relative;
+    h4 {
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+    p {
+      background: #fff;
+      padding: 15px;
+      font-size: 14px;
+      border-radius: 0 20px 20px 20px;
+    }
+    .message-date {
+      font-size: 10px;
+      color: $dateColor;
+      position: absolute;
+      bottom: 0px;
+      right: -65px;
+    }
+  }
+}
+// UserMsg.js
+.user-msg {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 15px;
+  div {
+    position: relative;
+    p {
+      display: inline-block;
+      background: $mainColor;
+      padding: 15px;
+      color: #fff;
+      font-size: 14px;
+      text-align: right;
+      border-radius: 20px 0 20px 20px;
+    }
+    .message-date {
+      font-size: 10px !important;
+      color: $dateColor !important;
+      position: absolute;
+      bottom: 5px;
+      left: -65px;
+    }
+  }
+}
+// SendForm.js
+.send-msg-wrapper form {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  padding: 20px;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  textarea {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 20px;
+    font-family: "Noto Sans KR", sans-serif;
+    overflow-y: hidden;
+    resize: none;
+    -ms-overflow-style: none;
+    text {
+      padding: 5px;
+    }
+    &::-webkit-scrollbar {
+      -ms-overflow-style: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  button {
+    background: transparent;
+    border: none;
+    margin-left: 10px;
+    font-size: 20px;
+    color: rgb(209, 209, 209);
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+  button:hover {
+    color: $mainColor;
+  }
+}
+
+//Calendar.js
+.calendar {
+  .react-calendar {
+    width: 100%;
+    border: none;
+
+    margin-bottom: 20px;
+    // 월
+    .react-calendar__navigation__label__labelText {
+      font-size: 1.1em;
+    }
+    // 월 변경 화살표
+    .react-calendar__navigation__arrow {
+      font-size: 1.2em;
+    }
+
+    // 달력 월, 화살표를 클릭했을 때 (focus되었을때)
+    .react-calendar__navigation button:enabled:focus {
+      background-color: transparent;
+    }
+    // 달력 요일
+    abbr[title] {
+      text-decoration: none;
+    }
+
+    // 날짜 (일)
+    .react-calendar__tile {
+      width: calc(100% / 7);
+      height: 44px;
+      padding: 5px 7px;
+    }
+    .react-calendar__tile > abbr {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+    // 날짜  (일) 호버,포커스 초기화
+    .react-calendar__tile:enabled:hover,
+    .react-calendar__tile:enabled:focus {
+      background-color: transparent;
+    }
+    // 날짜  (일) 호버,포커스
+    .react-calendar__tile:enabled:hover abbr,
+    .react-calendar__tile:enabled:focus abbr {
+      background-color: $mainColor;
+      border-color: $mainColor;
+      color: #fff;
+    }
+
+    // 날짜 - 주말
+    .react-calendar__month-view__days__day--weekend {
+      color: #000;
+    }
+    // 이벤트
+    .react-calendar__hasSchedule > abbr {
+      position: relative;
+      &::after {
+        content: "";
+        width: 80%;
+        height: 1px;
+        background-color: #999;
+        position: absolute;
+        bottom: 0px;
+      }
+    } // 오늘 날짜
+    .react-calendar__tile--now {
+      background: transparent;
+    }
+    .react-calendar__tile--now > abbr {
+      position: relative;
+      &::before {
+        content: "";
+        width: 30px;
+        height: 30px;
+        border: 2px dotted $mainColor;
+        border-radius: 50%;
+        position: absolute;
+      }
+      &::after {
+        width: 0;
+      }
+    }
+    // active된 날짜
+    .react-calendar__tile--active {
+      background-color: transparent;
+    }
+    .react-calendar__tile--active > abbr {
+      background-color: $mainColor;
+      color: #fff;
+      &::after {
+        width: 0;
+      }
+    }
+
+    // 현재 active 달 외 앞,뒤 달 날짜
+    .react-calendar__month-view__days__day--neighboringMonth {
+      color: #999;
+    }
+    .react-calendar__month-view__days__day--neighboringMonth > abbr {
+      background-color: transparent !important;
+      color: $dateColor !important;
+    }
+    // 월
+    .react-calendar__tile.react-calendar__year-view__months__month {
+      height: auto;
+      padding: 4px 0;
+    }
+    .react-calendar__tile.react-calendar__year-view__months__month > abbr {
+      width: 36px;
+      height: 36px;
+    }
+
+    // 달력 월 클릭시
+    .react-calendar__year-view__months__month.react-calendar__hasSchedule
+      > abbr {
+      background-color: transparent;
+    }
+    .react-calendar__year-view__months__month.react-calendar__tile--now > abbr {
+      background-color: $mainColor;
+    }
+  }
+}
+
+//ScheduleContents.js
+.schedule-wrapper {
+  padding-top: 14px;
+  margin-bottom: 14px;
+  border-top: 1px solid #eee;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .schedule-title {
+    margin-bottom: 10px;
+  }
+  .empty-schedule {
+    text-align: center;
+  }
+  .btn-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .btn-more {
+      font-size: 1.2em;
+      cursor: pointer;
+      &:hover svg {
+        color: $mainColor;
+      }
+    }
+  }
+}
+
+//ScheduleItem.js
+.schedule-item {
+  @extend %Flex;
+  padding: 4px 8px;
+  margin-bottom: 10px;
+  .time {
+    color: #555;
+    font-size: 0.8em;
+  }
+  .score-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .team {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.9em;
+      .score {
+        font-size: 1.2em;
+      }
+      &.home.win::before {
+        @include winnerCircle();
+      }
+      &.away.win::after {
+        @include winnerCircle();
+      }
+    }
+    .vs {
+      font-size: 0.7em;
+    }
+  }
+  .location {
+    width: 90px;
+    font-size: 0.9em;
+    text-align: center;
+  }
+}
+
+// Setting.js
+#setting {
+  .my-profile {
+    width: 100%;
+    img {
+      display: flex;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    .my-profile-content {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 40px;
+      h4 {
+        font-weight: normal;
+        margin-bottom: 5px;
+      }
+      p {
+        font-size: 10px;
+        color: #999;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+  .setting-list-wrapper {
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    .setting-list-title {
+      font-size: 12px;
+      font-weight: normal;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .setting-list li {
+      @extend %Flex;
+
+      padding: 20px 0;
+      font-size: 14px;
+      color: #555;
+      transition: 0.4s;
+      cursor: pointer;
+      .setting-item-left {
+        display: flex;
+
+        .item-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 24px;
+          height: 24px;
+        }
+        .item-icon-img {
+          width: 24px;
+          height: 24px;
+        }
+        span {
+          margin-left: 20px;
+        }
+        i {
+          font-size: 18px;
+        }
+        i.fa-hashtag {
+          color: $mainColor;
+        }
+      }
+      &:hover {
+        color: $mainColor;
+      }
+    }
+  }
+}
+// AlertMsg.js
+.alert-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+.alert-msg {
+  background-color: $mainColor;
+  padding: 14px 24px;
+  border-radius: 10px;
+  color: #fff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Buttons
+.btn {
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    color: $mainColor;
+  }
+}
+
+// NotFound.js
+// Error.js
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  .error-title {
+    margin-bottom: 0.25em;
+  }
+  .error-message {
+    margin-bottom: 1.5em;
+  }
+  .btn-link {
+    background-color: $mainColor;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #fff;
+    transition: all 0.3s;
+    &:hover {
+      filter: grayscale(0.4);
+    }
+  }
+}
+
+// Loading.js
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  .loader {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    transform: rotate(45deg);
+    transform-origin: 40px 40px;
+    .heart {
+      top: 32px;
+      left: 32px;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: #cb8df0;
+      animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+      &::before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 32px;
+        background: #cb8df0;
+        border-radius: 50% 0 0 50%;
+        position: absolute;
+        left: -24px;
+      }
+      &::after {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 32px;
+        background: #cb8df0;
+        position: absolute;
+        top: -24px;
+        border-radius: 50% 50% 0 0;
+      }
+    }
+  }
+  span {
+    color: #cb8df0;
+  }
+}
+@keyframes lds-heart {
+  0% {
+    transform: scale(0.95);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  39% {
+    transform: scale(0.85);
+  }
+  45% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
