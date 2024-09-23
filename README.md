@@ -1,12 +1,5 @@
 # [React] Bubble 클론 코딩
 
-[![gomintalk](https://github.com/hyemin12/gomin-talk-app/assets/66300732/c199fe13-a11e-44c3-9e13-d21e33eb2000)](https://wizardly-hermann-7fecb3.netlify.app)
-
-이미지를 클릭하면 사이트로 이동합니다. (읽기전용사이트)
-
-<hr>
-<br>
-
 - 파라미터를 이용한 상세페이지를 만드는 것을 연습하기 위해 제작한 프로젝트<br>
 - 프로필 화면에 있는 이미지를 클릭하면, 해당 친구의 프로필 이미지를 크게 확인할 수 있음
 - 채팅목록을 클릭하면 채팅방으로 이동하며, 친구에게 메세지를 보낼 수 있음 <br>
